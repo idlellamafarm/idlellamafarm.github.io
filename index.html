@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width">
 	<title>Idle llama farm</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
-	<link rel="icon" href="sources/llama.jpg" />
+	<link rel="icon" href="sources/llama.png" />
 
 
 
@@ -14,27 +14,88 @@
 
 <body>
 
+	<div id="prices" class="overlay">
+
+		<a href="javascript:void(0)" class="closebtn" onclick="transition()">==></a>
+
+		<div class="overlay-content">
+			<b>Price list</b>
+      <p>1 food is worth 2 coins</p>
+    	<p>1 llama costs 1000 coins</p>
+    	<p id="up">The boss llama can be upgraded for 10 food</p>
+    	<p>A farm will make 2 food every minute and costs 100 coins</p>
+    	<p>Llama factories cost 5 llamas and 500 coins and creates 1 AK-47 rifle a minute</p>
+      
+  </div>
+
+</div>
+
+<div id="mechanics" class="overlay">
+
+  <a href="javascript:void(0)" class="closebtn" onclick="transition()">==></a>
+
+  <div class="overlay-content">
+  <b>Game mechanics</b> 
 	<p>Each llama consumes 1 food every minute</p>
 	<p>For every two llamas, one llama is born every 10 minutes</p>
-	<p>1 food is worth 2 coins</p>
-	<p>A farm will make 2 food every minute and costs 100 coins</p>
-	<p>1 llama costs 1000 coins</p>
 	<p>If you run out of food your llamas will starve and die</p>
-	<p id="up">The boss llama can be upgraded for 10 food</p>
 	<p>Llama factories cost 5 llamas and 500 coins and creates 1 AK-47 rifle a minute</p>
+  </div>
 
-	<p id="la">You have 0 llamas</p>
-	<p id="fa">You have 0 food</p>
-	<p id="ca">You have 0 coins</p>
-	<p id="faa">You have 0 farms</p>
-	<p id="lfa">You have 0 llama factories</p>
-	<p id="ll">Your llama is level 0</p>
-	<p id="ln">Your boss llama is called </p>
+</div>
 
-	<img id="gainfood" src="sources/llama.jpg" width="auto" height="100px" onclick="addfood()" alt="click to grow food">
-  <p>Click the llama to grow food</p>
+	<div id="stats" class="overlay">
 
+		<a href="javascript:void(0)" class="closebtn" onclick="transition()">==></a>
+
+		<div class="overlay-content">
+    <b>Stats</b>
+	  <p id="la">You have 0 llamas</p>
+	  <p id="ca">You have 0 coins</p>
+	  <p id="faa">You have 0 farms</p>
+	  <p id="lfa">You have 0 llama factories</p>
+      
+  </div>
+
+</div>
+
+	<div id="llamaclick" class="overlay">
+
+		<a href="javascript:void(0)" class="closebtn" onclick="transition()">==></a>
+
+		<div class="overlay-content">
+    
+    <b>Llama temple</b>
+  	<p id="ll">Your llama is level 0</p>
+	  <p id="ln">Your boss llama is called </p>
+    <p id="fa">You have 0 food</p>
+
+	  <img id="gainfood" src="sources/llama.png" width="auto" height="100px" onclick="addfood()" alt="click to grow food">
+    <p>Click the llama to grow food</p>
+      
+  </div>
+
+</div>
+
+	<div id="shop" class="overlay">
+
+		<a href="javascript:void(0)" class="closebtn" onclick="transition()">==></a>
+
+		<div class="overlay-content">
+  
+  <div id="second">
+    <b>Stats</b>
+    <p id="fa2">You have 0 food</p>
+    <p id="la2">You have 0 llamas</p>
+	  <p id="ca2">You have 0 coins</p>
+	  <p id="faa2">You have 0 farms</p>
+	  <p id="lfa2">You have 0 llama factories</p>
+  </div>
+
+  <div id="first">
   <p></p>
+
+  <b>Shop</b>
 
   <button id="sell" onclick="sell(1)">Sell some food</button>
   <button id="buyfarm" onclick="buyfarm(1)">Buy a farm</button>
@@ -50,41 +111,42 @@
   <button id="llamaupgrade" onclick="llamaupgrade(10)">Upgrade llama x10</button>
   <button id="buyfactory" onclick="buyfactory(10)">Buy  factory x10</button>
 
-  <p></p>
-
-
   <label for="sellamount">Custom amount of food to be sold:</label>
   <input type="text" id="sellamount" name="sellamount">
   <input type="button" onclick="fsubmit()" value="Submit">
 
-  <p></p>
-
   <label for="buyfarmamount">Custom amount of farms to buy:</label>
   <input type="text" id="buyfarmamount" name="buyfarmamount">
-  <input type="button" onclick="bsubmit()" value="Submit">
-
-  <p></p>  
+  <input type="button" onclick="bsubmit()" value="Submit"> 
 
   <label for="buyllamaamount">Custom amount of llamas to buy:</label>
   <input type="text" id="buyllamaamount" name="buyllamaamount">
   <input type="button" onclick="blsubmit()" value="Submit">
 
-  <p></p>
-
   <label for="llamaupgradeamount">Custom amount of llama upgrades to buy:</label>
   <input type="text" id="llamaupgradeamount" name="llamaupgradeamount">
   <input type="button" onclick="lusubmit()" value="Submit">  
 
-  <p></p>
-
   <label for="buyfactoryamount">Custom amount factories to buy:</label>
   <input type="text" id="buyfactoryamount" name="buyfactoryamount">
-  <input type="button" onclick="fbsubmit()" value="Submit">  
+  <input type="button" onclick="fbsubmit()" value="Submit"> 
+
+  </div>
+
+  </div>
+
+</div>
+
+  <p></p>
+
+ 
 
   <p></p>
 
 </body>
 
   <script src="script.js"></script>
+
+<meta property="og:description" content="Create a llama tycoon">
 
 </html>

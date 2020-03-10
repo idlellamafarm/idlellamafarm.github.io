@@ -7,8 +7,6 @@ var factories = 0;
 var aks = 0;
 var upgradecost;
 var max = "";
-var screennum = 1;
-var screens = ["prices", "mechanics", "llamaclick", "shop",];
 var logs = ["This is mostly for debugging."];
 
 var types = ["is below average really. Can't even spit that far.", "is your average llama.", "thinks he's pretty cool. Acts as though he is surgically attached to sunglasses.", "is a llama preacher. If you don't spit at humans you shall burn in hell.", "is a llama mayor, might try to bribe the other llamas..... of course if he gave you a few quid you wouldn't tell anyone.", "is the pinnacle of llama sophistication. Lives in a fricking mansion.", "is a llama marine. He spits acid...", "is a llama wizard. He will turn you into an alpaca if you're not careful.", "is a llama messiah, he rules all the rest.", "is Literally The Pinnacle Of Llama Evolution", "is a god. Don't do heresy."]
@@ -20,18 +18,6 @@ console.log(document.cookie);
 console.log("type logs to view session history")
 
 console.log("")
-
-transition();
-
-function transition(){
-  document.getElementById(screens[screennum]).style.width = "0%";
-  screennum++;
-  if(screennum==4){
-    screennum=1;
-  }
-  document.getElementById(screens[screennum]).style.width = "100%";
-}
-
 
 function sell(mult) {
   if (food < (1 * mult)) {
@@ -100,7 +86,6 @@ function isEven(value) {
 }
 
 function llamaeats() {
-if(llamas!==0){
   if (food > 0) {
     food = (food - 1);
     log("eat");
@@ -109,7 +94,6 @@ if(llamas!==0){
     llamas = (llamas - 1);
     log("death");
   }
-}
   setTimeout(llamaeats, (60000 / llamas))
 }
 
@@ -122,11 +106,9 @@ function farmgrow() {
 }
 
 function getgun(){
-  if((1/factories)!==Infinity){
   aks = (aks + 1);
   log("gotgun");
-  }
-  setTimeout(getgun, (60000 / factories));
+  setTimout(getgun, (60000 / factories));
 }
 
 function llamabirth() {
@@ -197,7 +179,7 @@ function checkNAN() {
   }
 
   if (isNaN(aks)) {
-    aks = 0;
+    factories = 0;
   }
 }
 
@@ -213,11 +195,6 @@ function update() {
   document.getElementById("ca").innerHTML = "You have " + coins + " coins";
   document.getElementById("faa").innerHTML = "You have " + farms + " farms";
   document.getElementById("lfa").innerHTML = "You have " + factories + " factories";
-  document.getElementById("fa2").innerHTML = "You have " + food + " food";
-  document.getElementById("la2").innerHTML = "You have " + llamas + " llamas";
-  document.getElementById("ca2").innerHTML = "You have " + coins + " coins";
-  document.getElementById("faa2").innerHTML = "You have " + farms + " farms";
-  document.getElementById("lfa2").innerHTML = "You have " + factories + " factories";
   document.getElementById("ll").innerHTML = "Your llama is level " + llamalevel + max;
   document.getElementById("ln").innerHTML = "Your boss llama is callled " + names[llamalevel] + ". " + names[llamalevel] + " " + types[Math.round(llamalevel / 100)];
 
@@ -261,4 +238,3 @@ setInterval(update, 1);
 
 farmgrow();
 llamaeats();
-getgun();

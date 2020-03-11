@@ -8,7 +8,7 @@ var aks = 0;
 var upgradecost;
 var max = "";
 var screennum = 1;
-var screens = ["prices", "mechanics", "llamaclick", "shop",];
+var screens = ["prices", "llamaclick", "shop", ];
 var logs = ["This is mostly for debugging."];
 
 var types = ["is below average really. Can't even spit that far.", "is your average llama.", "thinks he's pretty cool. Acts as though he is surgically attached to sunglasses.", "is a llama preacher. If you don't spit at humans you shall burn in hell.", "is a llama mayor, might try to bribe the other llamas..... of course if he gave you a few quid you wouldn't tell anyone.", "is the pinnacle of llama sophistication. Lives in a fricking mansion.", "is a llama marine. He spits acid...", "is a llama wizard. He will turn you into an alpaca if you're not careful.", "is a llama messiah, he rules all the rest.", "is Literally The Pinnacle Of Llama Evolution", "is a god. Don't do heresy."]
@@ -23,235 +23,237 @@ console.log("")
 
 transition();
 
-function transition(){
-  document.getElementById(screens[screennum]).style.width = "0%";
-  screennum++;
-  if(screennum==4){
-    screennum=1;
-  }
-  document.getElementById(screens[screennum]).style.width = "100%";
+function transition() {
+	document.getElementById(screens[screennum]).style.width = "0%";
+	screennum++;
+	if (screennum == 3) {
+		screennum = 1;
+	}
+	document.getElementById(screens[screennum]).style.width = "100%";
 }
 
 
 function sell(mult) {
-  if (food < (1 * mult)) {
-    window.alert("You don't have enough for that...")
-  }
-  if (food > ((1 * mult) - 1)) {
-    food -= (1 * mult);
-    coins += (2 * mult);
-  }
+	if (food < (1 * mult)) {
+		window.alert("You don't have enough for that...")
+	}
+	if (food > ((1 * mult) - 1)) {
+		food -= (1 * mult);
+		coins += (2 * mult);
+	}
 
 }
 
 function llamaupgrade(mult) {
-  upgradecost = (llamalevel * 11)
-  if (food < (upgradecost * mult)) {
-    window.alert("You don't have enough for that...")
-  }
-  if (food > ((upgradecost * mult) - 1) && (llamalevel != 1000)) {
-    food -= (upgradecost * mult);
-    llamalevel += (1 * mult);
-  }
-  if (llamalevel == 1000) {
-    window.alert("Your llama cannot be upgraded any more");
-  }
+	upgradecost = (llamalevel * 11)
+	if (food < (upgradecost * mult)) {
+		window.alert("You don't have enough for that...")
+	}
+	if (food > ((upgradecost * mult) - 1) && (llamalevel != 1000)) {
+		food -= (upgradecost * mult);
+		llamalevel += (1 * mult);
+	}
+	if (llamalevel == 1000) {
+		window.alert("Your llama cannot be upgraded any more");
+	}
 
 }
 
 function buyfarm(mult) {
-  if (coins < (100 * mult)) {
-    window.alert("You don't have enough for that...")
-  }
-  if (coins > ((100 * mult) - 1)) {
-    coins -= (100 * mult);
-    farms += (1 * mult);
-  }
+	if (coins < (100 * mult)) {
+		window.alert("You don't have enough for that...")
+	}
+	if (coins > ((100 * mult) - 1)) {
+		coins -= (100 * mult);
+		farms += (1 * mult);
+	}
 
 
 }
 
 function buyllama(mult) {
-  if (coins < (1000 * mult)) {
-    window.alert("You don't have enough for that...")
-  }
-  if (coins > ((1000 * mult) - 1)) {
-    llamas += (1 * mult);
-    coins -= (1000 * mult);
-  }
+	if (coins < (1000 * mult)) {
+		window.alert("You don't have enough for that...")
+	}
+	if (coins > ((1000 * mult) - 1)) {
+		llamas += (1 * mult);
+		coins -= (1000 * mult);
+	}
 }
 
 function buyfactory(mult) {
-  if (llamas < (5 * mult) || coins < (500 * mult)) {
-    window.alert("You don't have enough for that...")
-  }
-  if (llamas > ((5 * mult) - 1) && coins > ((500 * mult) - 1)) {
-    factories += (1 * mult);
-    coins -= (500 * mult);
-    llamas -= (5 * mult)
-  }
+	if (llamas < (5 * mult) || coins < (500 * mult)) {
+		window.alert("You don't have enough for that...")
+	}
+	if (llamas > ((5 * mult) - 1) && coins > ((500 * mult) - 1)) {
+		factories += (1 * mult);
+		coins -= (500 * mult);
+		llamas -= (5 * mult)
+	}
 }
 
 function isEven(value) {
-  if (value % 2 == 0)
-    return true;
-  else
-    return false;
+	if (value % 2 == 0)
+		return true;
+	else
+		return false;
 }
 
 function llamaeats() {
-if(llamas!==0){
-  if (food > 0) {
-    food = (food - 1);
-    log("eat");
-  }
-  if (food == 0) {
-    llamas = (llamas - 1);
-    log("death");
-  }
-}
-  setTimeout(llamaeats, (60000 / llamas))
+	if (llamas !== 0) {
+		if (food > 0) {
+			food = (food - 1);
+			log("eat");
+		}
+		if (food == 0) {
+			llamas = (llamas - 1);
+			log("death");
+		}
+	}
+	setTimeout(llamaeats, (60000 / llamas))
 }
 
 function farmgrow() {
-  if((1/farms)!==Infinity){
-    food ++;
-    log("gotfood");
-  }
-  setTimeout(farmgrow, (30000/farms));
+	if ((1 / farms) !== Infinity) {
+		food++;
+		log("gotfood");
+	}
+	setTimeout(farmgrow, (30000 / farms));
 }
 
-function getgun(){
-  if((1/factories)!==Infinity){
-  aks = (aks + 1);
-  log("gotgun");
-  }
-  setTimeout(getgun, (60000 / factories));
+function getgun() {
+	if ((1 / factories) !== Infinity) {
+		aks = (aks + 1);
+		log("gotgun");
+	}
+	setTimeout(getgun, (60000 / factories));
 }
 
 function llamabirth() {
-  llamas = (llamas + 1);
-  log("llama");
-  setTimeout(llamabirth, (600000 / llamas));
+	llamas = (llamas + 1);
+	log("llama");
+	setTimeout(llamabirth, (600000 / llamas));
 }
 
 function fsubmit() {
-  sell(parseInt(document.getElementById("sellamount").value));
+	sell(parseInt(document.getElementById("sellamount").value));
 }
 
 function lusubmit() {
-  llamaupgrade(parseInt(document.getElementById("llamaupgradeamount").value));
+	llamaupgrade(parseInt(document.getElementById("llamaupgradeamount").value));
 }
 
 function bsubmit() {
-  buyfarm(parseInt(document.getElementById("buyfarmamount").value));
+	buyfarm(parseInt(document.getElementById("buyfarmamount").value));
 }
 
 function blsubmit() {
-  buyllama(parseInt(document.getElementById("buyllamaamount").value));
+	buyllama(parseInt(document.getElementById("buyllamaamount").value));
 }
 
 function fbsubmit() {
-  buyfactory(parseInt(document.getElementById("buyfactoryamount").value));
+	buyfactory(parseInt(document.getElementById("buyfactoryamount").value));
 }
 
 function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
 }
 
 function checkNAN() {
-  if (isNaN(coins)) {
-    coins = 0;
-  }
+	if (isNaN(coins)) {
+		coins = 0;
+	}
 
-  if (isNaN(food)) {
-    food = 2;
-  }
+	if (isNaN(food)) {
+		food = 2;
+	}
 
-  if (isNaN(llamas)) {
-    llamas = 1;
-  }
+	if (isNaN(llamas)) {
+		llamas = 1;
+	}
 
-  if (isNaN(llamalevel)) {
-    llamalevel = 1;
-  }
+	if (isNaN(llamalevel)) {
+		llamalevel = 1;
+	}
 
-  if (isNaN(farms)) {
-    farms = 0;
-  }
+	if (isNaN(farms)) {
+		farms = 0;
+	}
 
-  if (isNaN(factories)) {
-    factories = 0;
-  }
+	if (isNaN(factories)) {
+		factories = 0;
+	}
 
-  if (isNaN(aks)) {
-    aks = 0;
-  }
+	if (isNaN(aks)) {
+		aks = 0;
+	}
 }
 
 
-
-
 function update() {
-  if (llamalevel == 1000) {
-    max = " (maximum level)";
-  }
-  document.getElementById("fa").innerHTML = "You have " + food + " food";
-  document.getElementById("la").innerHTML = "You have " + llamas + " llamas";
-  document.getElementById("ca").innerHTML = "You have " + coins + " coins";
-  document.getElementById("faa").innerHTML = "You have " + farms + " farms";
-  document.getElementById("lfa").innerHTML = "You have " + factories + " factories";
-  document.getElementById("fa2").innerHTML = "You have " + food + " food";
-  document.getElementById("la2").innerHTML = "You have " + llamas + " llamas";
-  document.getElementById("ca2").innerHTML = "You have " + coins + " coins";
-  document.getElementById("faa2").innerHTML = "You have " + farms + " farms";
-  document.getElementById("lfa2").innerHTML = "You have " + factories + " factories";
-  document.getElementById("ll").innerHTML = "Your llama is level " + llamalevel + max;
-  document.getElementById("ln").innerHTML = "Your boss llama is callled " + names[llamalevel] + ". " + names[llamalevel] + " " + types[Math.round(llamalevel / 100)];
+	if (llamalevel == 1000) {
+		max = " (maximum level)";
+	}
+	document.getElementById("fa").innerHTML = "You have " + food + " food";
+	document.getElementById("la").innerHTML = "You have " + llamas + " llamas";
+	document.getElementById("ca").innerHTML = "You have " + coins + " coins";
+	document.getElementById("faa").innerHTML = "You have " + farms + " farms";
+	document.getElementById("lfa").innerHTML = "You have " + factories + " factories";
+	document.getElementById("aks").innerHTML = "You have " + aks + " AK-47s";
+	document.getElementById("fa2").innerHTML = "You have " + food + " food";
+	document.getElementById("la2").innerHTML = "You have " + llamas + " llamas";
+	document.getElementById("ca2").innerHTML = "You have " + coins + " coins";
+	document.getElementById("faa2").innerHTML = "You have " + farms + " farms";
+	document.getElementById("lfa2").innerHTML = "You have " + factories + " factories";
+	document.getElementById("aks2").innerHTML = "You have " + aks + " AK-47s";
+	document.getElementById("ll").innerHTML = "Your llama is level " + llamalevel + max;
+	document.getElementById("ln").innerHTML = "Your boss llama is callled " + names[llamalevel] + ". " + names[llamalevel] + " " + types[Math.round(llamalevel / 100)];
+	document.getElementById("up").innerHTML = "The llama can be upgraded for " + (10 * llamalevel) + " food";
+	document.getElementById("up2").innerHTML = "The llama can be upgraded for " + (10 * llamalevel) + " food";
+	document.getElementById("fa3").innerHTML = "You have " + food + " food";
 
-  document.getElementById("up").innerHTML = "The llama can be upgraded for " + (10 * llamalevel) + " food";
-  document.cookie = "food" + "=" + food + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
-  document.cookie = "llamas" + "=" + llamas + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
-  document.cookie = "coins" + "=" + coins + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
-  document.cookie = "farms" + "=" + farms + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
-  document.cookie = "llamalevel" + "=" + llamalevel + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
-  document.cookie = "factories" + "=" + factories + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
-  document.cookie = "aks" + "=" + aks + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "food" + "=" + food + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "llamas" + "=" + llamas + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "coins" + "=" + coins + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "farms" + "=" + farms + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "llamalevel" + "=" + llamalevel + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "factories" + "=" + factories + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
+	document.cookie = "aks" + "=" + aks + ";" + "expires=Thu, 18 Dec 2200 12:00:00 UTC";
 
 }
 
 function addfood() {
-  food += llamalevel;
+	food += llamalevel;
 }
 
 function cookieretrieve() {
-  food = parseInt(getCookie("food"));
-  llamas = parseInt(getCookie("llamas"));
-  coins = parseInt(getCookie("coins"));
-  farms = parseInt(getCookie("farms"));
-  llamalevel = parseInt(getCookie("llamalevel"));
-  factories = parseInt(getCookie("factories"));
-  aks = parseInt(getCookie("aks"));
+	food = parseInt(getCookie("food"));
+	llamas = parseInt(getCookie("llamas"));
+	coins = parseInt(getCookie("coins"));
+	farms = parseInt(getCookie("farms"));
+	llamalevel = parseInt(getCookie("llamalevel"));
+	factories = parseInt(getCookie("factories"));
+	aks = parseInt(getCookie("aks"));
 }
 
 function log(message) {
-  logs.push(message);
+	logs.push(message);
 }
 
-function debugexport(){
-navigator.clipboard.writeText(logs)
+function debugexport() {
+	navigator.clipboard.writeText(logs)
 }
 
 cookieretrieve();

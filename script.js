@@ -41,6 +41,7 @@ function sell(mult) {
 		food -= (1 * mult);
 		coins += (2 * mult);
 	}
+  update();
 
 }
 
@@ -56,7 +57,7 @@ function llamaupgrade(mult) {
 	if (llamalevel == 1000) {
 		window.alert("Your llama cannot be upgraded any more");
 	}
-
+  update();
 }
 
 function buyfarm(mult) {
@@ -68,7 +69,7 @@ function buyfarm(mult) {
 		farms += (1 * mult);
 	}
 
-
+  update();
 }
 
 function buyllama(mult) {
@@ -79,6 +80,7 @@ function buyllama(mult) {
 		llamas += (1 * mult);
 		coins -= (1000 * mult);
 	}
+  update();
 }
 
 function buyfactory(mult) {
@@ -90,6 +92,7 @@ function buyfactory(mult) {
 		coins -= (500 * mult);
 		llamas -= (5 * mult)
 	}
+  update();
 }
 
 function isEven(value) {
@@ -110,6 +113,7 @@ function llamaeats() {
 			log("death");
 		}
 	}
+  update();
 	setTimeout(llamaeats, (60000 / llamas))
 }
 
@@ -118,6 +122,7 @@ function farmgrow() {
 		food++;
 		log("gotfood");
 	}
+  update();
 	setTimeout(farmgrow, (30000 / farms));
 }
 
@@ -126,12 +131,14 @@ function getgun() {
 		aks = (aks + 1);
 		log("gotgun");
 	}
+  update();
 	setTimeout(getgun, (60000 / factories));
 }
 
 function llamabirth() {
 	llamas = (llamas + 1);
 	log("llama");
+  update();
 	setTimeout(llamabirth, (600000 / llamas));
 }
 
@@ -174,30 +181,37 @@ function getCookie(cname) {
 function checkNAN() {
 	if (isNaN(coins)) {
 		coins = 0;
+    update();
 	}
 
 	if (isNaN(food)) {
 		food = 2;
+    update();
 	}
 
 	if (isNaN(llamas)) {
 		llamas = 1;
+    update();
 	}
 
 	if (isNaN(llamalevel)) {
 		llamalevel = 1;
+    update();
 	}
 
 	if (isNaN(farms)) {
 		farms = 0;
+    update();
 	}
 
 	if (isNaN(factories)) {
 		factories = 0;
+    update();
 	}
 
 	if (isNaN(aks)) {
 		aks = 0;
+    update();
 	}
 }
 
@@ -236,6 +250,7 @@ function update() {
 
 function addfood() {
 	food += llamalevel;
+  update();
 }
 
 function cookieretrieve() {
@@ -246,6 +261,7 @@ function cookieretrieve() {
 	llamalevel = parseInt(getCookie("llamalevel"));
 	factories = parseInt(getCookie("factories"));
 	aks = parseInt(getCookie("aks"));
+  update();
 }
 
 function log(message) {
@@ -259,7 +275,7 @@ function debugexport() {
 cookieretrieve();
 checkNAN();
 
-setInterval(update, 1);
+update();
 
 farmgrow();
 llamaeats();
